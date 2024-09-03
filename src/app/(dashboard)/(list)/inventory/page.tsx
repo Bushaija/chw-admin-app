@@ -1,5 +1,6 @@
 import Table from "@/components/Table"
 import Filter from "@/components/Filter"
+import UserCard from "@/components/UserCard";
 
 type Prediction = {
     id: number;
@@ -25,36 +26,30 @@ const columns = [
     },
 ]
 
-const predictionData = [
+const medicines = [
     {
-        id: 1,
-        name: "CHW1",
-        commodityType: "MedroxyprogesteroneAcetate Table",
-        quantity: "12"
+        "id": 1,
+        "name": "Rapid Diagnostic Test",
     },
     {
-        id: 2,
-        name: "CHW2",
-        commodityType: "MedroxyprogesteroneAcetate Table",
-        quantity: "12"
+        "id": 2,
+        "name": "Arthemether_20mg_lumef_antrine_120mg_Tab_6x1",
     },
     {
-        id: 3,
-        name: "CHW3",
-        commodityType: "MedroxyprogesteroneAcetate Table",
-        quantity: "12"
+        "id": 3,
+        "name": "Arthemether_20mg_lumef_antrine_120mg_Tab_6x2",
     },
     {
-        id: 4,
-        name: "CHW4",
-        commodityType: "MedroxyprogesteroneAcetate Table",
-        quantity: "12"
+        "id": 4,
+        "name": "Arthemether_20mg_lumef_antrine_120mg_Tab_6x3",
     },
     {
-        id: 5,
-        name: "CHW5",
-        commodityType: "MedroxyprogesteroneAcetate Table",
-        quantity: "12"
+        "id": 5,
+        "name": "Arthemether_20mg_lumef_antrine_120mg_Tab_6x4",
+    },
+    {
+        "id": 6,
+        "name": "Bed Net",
     }
 ]
 
@@ -79,23 +74,30 @@ const InventoryPage = () => {
         <div className="bg-[#f6f5ec] p-4 rounded-md flex-1 m-4 mt-8 pb-[2rem] w-full">
             <Filter />
         </div>
-        <div className="bg-[#f6f5ec] p-4 rounded-md flex-1 m-4 mt-8 pb-[2rem] w-full">
-            {/* top */}
-            <div className="flex items-center justify-between">
-                
-                {/* <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
-                    <div className="flex items-center gap-4 self-end">
-
-                    </div>
-                </div> */}
+        <div className="w-full flex flex-col gap-4 px-4">
+            <div className="flex items-center gap-4 w-full">
+                {
+                    medicines.map(item => {
+                        if(item.id < 4) {
+                            return (<div key={item.id} className="w-full">
+                                <UserCard type={item.name} />
+                            </div>)
+                        }
+                    })
+                }
             </div>
-            {/* list */}
-            <div className="flex justify-center items-center mt-12">
-                <Table 
-                    columns={columns}
-                    renderRow={renderRow}
-                    data={predictionData}
-                />
+            <div className="flex items-center gap-4 w-full">
+                {
+                    medicines.map(item => {
+                        if(item.id > 3) {
+                            return(
+                                <div key={item.id} className="w-full">
+                                    <UserCard type={item.name} />
+                                </div>
+                            )
+                        }
+                    })
+                }
             </div>
         </div>
     </section>

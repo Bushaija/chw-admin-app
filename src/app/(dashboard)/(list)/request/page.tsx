@@ -24,7 +24,7 @@ const columns = [
         className: "hidden md:table-cell",
     },
     {
-        header: "Inventory Level",
+        header: "Status",
         accessor: "forecasted",
         className: "hidden md:table-cell",
     },
@@ -36,14 +36,14 @@ const predictionData = [
         name: "CHW1",
         commodityType: "MedroxyprogesteroneAcetate Table",
         quantity: "12",
-        inventory: "12",
+        status: "approved",
     },
     {
         id: 2,
         name: "CHW2",
         commodityType: "MedroxyprogesteroneAcetate Table",
         quantity: "12",
-        inventory: "12",
+        status: "appending",
 
     },
     {
@@ -51,7 +51,7 @@ const predictionData = [
         name: "CHW3",
         commodityType: "MedroxyprogesteroneAcetate Table",
         quantity: "12",
-        inventory: "12",
+        status: "rejected",
 
     },
     {
@@ -59,7 +59,7 @@ const predictionData = [
         name: "CHW4",
         commodityType: "MedroxyprogesteroneAcetate Table",
         quantity: "12",
-        inventory: "12",
+        status: "rejected",
 
     },
     {
@@ -67,7 +67,7 @@ const predictionData = [
         name: "CHW5",
         commodityType: "MedroxyprogesteroneAcetate Table",
         quantity: "12",
-        inventory: "12",
+        status: "approved",
 
     }
 ]
@@ -83,7 +83,7 @@ const RequestPage = () => {
             </td>
             <td className="hidden md:table-cell">{item.commodityType}</td>
             <td className="hidden md:table-cell text-center">{item.quantity}</td>
-            <td className="hidden md:table-cell text-center">{item.inventory}</td>
+            <td className="hidden md:table-cell capitalize">{item.status}</td>
         </tr>
     )
     

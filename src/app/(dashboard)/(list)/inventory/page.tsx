@@ -76,7 +76,7 @@ const InventoryPage = () => {
         <h1 className="m-4 hidden md:block text-lg font-bold text-green-500">
             Inventory Level
         </h1>
-        <div className="bg-[#E9EBED] p-4 rounded-md flex-1 m-4 mt-8 pb-[2rem] w-full">
+        <div className="bg-[#f6f5ec] p-4 rounded-md flex-1 m-4 mt-8 pb-[2rem] w-full">
             <Filter />
         </div>
         <div className="bg-[#f6f5ec] p-4 rounded-md flex-1 m-4 mt-8 pb-[2rem] w-full">

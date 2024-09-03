@@ -1,5 +1,5 @@
 import Table from "@/components/Table"
-// import Filter from "@/components/Filter"
+import Filter from "@/components/Filter"
 
 
 type Prediction = {
@@ -78,7 +78,9 @@ const PredictionPage = () => {
         <h1 className="m-4 hidden md:block text-lg font-bold text-green-500">
             Stock Level Prediction
         </h1>
-        
+        <div className="bg-[#f6f5ec] p-4 rounded-md flex-1 m-4 mt-8 pb-[2rem] w-full">
+            <Filter />
+        </div>
         <div className="bg-[#f6f5ec] p-4 rounded-md flex-1 m-4 mt-8 pb-[2rem] w-full">
         
             {/* list */}

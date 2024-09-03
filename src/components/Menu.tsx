@@ -15,52 +15,52 @@ const menuItems = [
       {
         icon: "/lesson.png",
         label: "Inventory Level",
-        href: "inventory",
+        href: "/inventory",
         visible: ["admin", "teacher"],
       },
       {
         icon: "/exam.png",
         label: "Stock Level",
-        href: "/stock-level",
+        href: "/stock",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
         icon: "/logout.png",
         label: "Prediction",
-        href: "/prediction",
+        href: "/predictions",
         visible: ["admin", "teacher", "student", "parent"],
       },
       {
         icon: "/message.png",
         label: "Requests",
-        href: "/requests",
+        href: "/request",
         visible: ["admin", "teacher", "student", "parent"],
       }
     ],
   },
-  {
-    title: "OTHER",
-    items: [
-      {
-        icon: "/profile.png",
-        label: "Profile",
-        href: "/profile",
-        visible: ["admin", "teacher", "student", "parent"],
-      },
-      {
-        icon: "/setting.png",
-        label: "Settings",
-        href: "/settings",
-        visible: ["admin", "teacher", "student", "parent"],
-      },
-      {
-        icon: "/logout.png",
-        label: "Logout",
-        href: "/auth/login",
-        visible: ["admin", "teacher", "student", "parent"],
-      },
-    ],
-  },
+  // {
+  //   title: "OTHER",
+  //   items: [
+  //     {
+  //       icon: "/profile.png",
+  //       label: "Profile",
+  //       href: "/profile",
+  //       visible: ["admin", "teacher", "student", "parent"],
+  //     },
+  //     {
+  //       icon: "/setting.png",
+  //       label: "Settings",
+  //       href: "/settings",
+  //       visible: ["admin", "teacher", "student", "parent"],
+  //     },
+  //     {
+  //       icon: "/logout.png",
+  //       label: "Logout",
+  //       href: "/auth/login",
+  //       visible: ["admin", "teacher", "student", "parent"],
+  //     },
+  //   ],
+  // },
 ];
 
 const Menu = () => {

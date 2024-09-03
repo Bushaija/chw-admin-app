@@ -11,7 +11,7 @@ export default function DashboardLayout({
   return (
       <section className="h-screen flex">
         {/* LEFT */}
-        <div className="w-[14%] md:w-[8%] lg:w-[16%] xl:w-[14%] p-4 bg-[#D9D9D9]">
+        <div className="w-[14%] md:w-[8%] lg:w-[16%] xl:w-[14%] p-4 bg-[#E9EBED]">
           <Link href="/" className="flex items-center justify-center lg:justify-start gap-2">
             <span className="lg:block font-bold w-full p-[.5rem] text-[#2DAC4D] rounded-md border-b-[1px] border-green-400 flex justify-center items-center text-center shadow-md">CHW</span>
           </Link>

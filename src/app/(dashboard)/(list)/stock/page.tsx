@@ -1,4 +1,5 @@
 import Table from "@/components/Table"
+import Filter from "@/components/Filter"
 
 type Prediction = {
     id: number;
@@ -60,7 +61,7 @@ const predictionData = [
 
 const StockPage = () => {
     const renderRow = (item: Prediction) => (
-        <tr key={item.id} className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-slate-300">
+        <tr key={item.id} className="border-b text-gray-400 border-gray-200 even:bg-slate-50 text-sm hover:bg-[#c8f7be] hover:text-gray-500">
             <td className="p-4">
                 <div className="flex flex-col">
                     <h3 className="font-semibold">{item.name}</h3>
@@ -72,18 +73,16 @@ const StockPage = () => {
     )
     
   return (
-    <div className="bg-white p-4 rounded-md flex-1 m-4 mt-24 pb-[2rem] w-full">
-        {/* top */}
-        <div className="flex items-center justify-between">
-            <h1 className="hidden md:block text-lg font-bold text-green-500">
-               Stock Level
-            </h1>
-            {/* <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
-                <div className="flex items-center gap-4 self-end">
-
-                </div>
-            </div> */}
+    <section className="">
+        <h1 className="m-4 hidden md:block text-lg font-bold text-green-500">
+            Stock Level
+        </h1>
+        <div className="bg-[#f6f5ec] p-4 rounded-md flex-1 m-4 mt-8 pb-[2rem] w-full">
+            <Filter />
         </div>
+    <div className="bg-[#f6f5ec] p-4 rounded-md flex-1 m-4 mt-8 pb-[2rem] w-full">
+        {/* top */}
+        
         {/* list */}
         <div className="flex justify-center items-center mt-12">
             <Table 
@@ -94,6 +93,7 @@ const StockPage = () => {
         </div>
         {/* pagination */}
     </div>
+    </section>
   )
 }
 

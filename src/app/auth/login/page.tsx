@@ -6,7 +6,7 @@ import { registerUser } from "@/lib/data"
 
 const SignIn = () => {
     return (
-        <section className="bg-[#C6C6C6] h-[100vh] w-full  flex items-center justify-center">
+        <section className="bg-[#E9EBED] h-[100vh] w-full  flex items-center justify-center">
             <div className="container flex flex-col justify-center items-center h-full text-[#494949]">
               <div className="title mt-4">
                 <Header title={"Login"}/>

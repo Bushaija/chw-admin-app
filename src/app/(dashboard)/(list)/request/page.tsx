@@ -1,4 +1,5 @@
-import Table from "@/components/Table"
+import Table from "@/components/Table";
+import Filter from "@/components/Filter";
 
 type Prediction = {
     id: number;
@@ -87,18 +88,14 @@ const RequestPage = () => {
     )
     
   return (
-    <div className="bg-white p-4 rounded-md flex-1 m-4 mt-24 pb-[2rem] w-full">
-        {/* top */}
-        <div className="flex items-center justify-between">
-            <h1 className="hidden md:block text-lg font-bold text-green-500">
-               Requests
-            </h1>
-            {/* <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
-                <div className="flex items-center gap-4 self-end">
-
-                </div>
-            </div> */}
+    <section className="">
+        <h1 className="m-4 hidden md:block text-lg font-bold text-green-500">
+            Inventory Level
+        </h1>
+        <div className="bg-[#f6f5ec] p-4 rounded-md flex-1 m-4 mt-8 pb-[2rem] w-full">
+            <Filter />
         </div>
+    <div className="bg-[#f6f5ec] p-4 rounded-md flex-1 m-4 mt-8 pb-[2rem] w-full">
         {/* list */}
         <div className="flex justify-center items-center mt-12">
             <Table 
@@ -109,6 +106,7 @@ const RequestPage = () => {
         </div>
         {/* pagination */}
     </div>
+    </section>
   )
 }
 

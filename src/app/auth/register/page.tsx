@@ -8,7 +8,7 @@ import Link from "next/link"
 
 const SignUp = () => {
   return (
-    <section className="h-[100vh] w-full  flex items-center justify-center bg-[#C6C6C6]">
+    <section className="h-[100vh] w-full  flex items-center justify-center bg-[#E9EBED]">
         <div className="container flex flex-col items-center h-full text-[#494949] ">
           <div className="title mt-4">
             <Header title={"Register"}/>
@@ -57,8 +57,8 @@ const SignUp = () => {
                     />
                   </div>
                   <InputField 
-                    fieldName={registerUser.address_info.village}
-                    placeholder={"Enter Village"}
+                    fieldName={registerUser.address_info.cell}
+                    placeholder={"Enter Cell"}
                   />
                 </div>
 

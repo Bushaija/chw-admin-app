@@ -1,65 +1,64 @@
-import React from 'react'
+"use client";
+import React, { useState } from 'react';
 
-const diseases = [
-  {
-    "id": 1,
-    "name": "Malaria Treatment"
-  },
-  {
-    "id": 2,
-    "name": "Diarrhea"
-  },
-  {
-    "id": 3,
-    "name": "Tuber Closis"
-  },{
-    "id": 4,
-    "name": "Pheumonia"
-  },{
-    "id": 5,
-    "name": "Parastic Infections"
-  },{
-    "id": 6,
-    "name": "Family Planning"
-  },{
-    "id": 7,
-    "name": "Nutrition Supplements"
-  },{
-    "id": 8,
-    "name": "Equipments"
-  },
-]
+// Disease categories based on JSON data
+const categories = [
+  { id: 1, name: "malaria" },
+  { id: 2, name: "diarrhea" },
+  { id: 3, name: "tuberculosis" },
+  { id: 4, name: "pneumonia_bacterial_infections" },
+  { id: 5, name: "parasitic_infections" },
+  { id: 6, name: "family_planning" },
+  { id: 7, name: "nutrition_supplements" },
+  { id: 8, name: "equipments" },
+];
 
-const Row = ({ id, name}) => (
+// Row Component for each radio button
+const Row = ({ id, name, handleChange, selected }) => (
   <div className='flex justify-start items-center gap-4 w-[350px]' key={id}>
-      <input type="radio" name="radio-5" className='radio radio-success'/>
-      <span>{name}</span>
+    <input
+      type="radio"
+      name="category"
+      className='radio radio-success'
+      onChange={() => handleChange(id)} // Trigger filter change
+      checked={selected === id} // Check if it's selected
+    />
+    <span>{name}</span>
   </div>
 );
 
-const Filter = () => {
+const Filter = ({ selectedCategory, setSelectedCategory }) => {
+  // Handles updating the selected category
+  const handleChange = (id) => {
+    setSelectedCategory(id);
+  };
+
   return (
     <div className='flex flex-col gap-4 w-full'>
-        <div className='flex gap-8'>
-          {
-            diseases.map(d => {
-              if (d.id < 5) {
-              return ( <Row id={d.id} name={d.name} />)
-              }
-            })
-          }
-        </div>
-        <div className='flex gap-8'>
-          {
-            diseases.map(d => {
-              if (d.id > 4) {
-              return ( <Row id={d.id} name={d.name} />)
-              }
-            })
-          }
-        </div>
+      <div className='flex gap-8'>
+        {categories.slice(0, 4).map(c => (
+          <Row
+            key={c.id}
+            id={c.id}
+            name={c.name}
+            handleChange={handleChange}
+            selected={selectedCategory}
+          />
+        ))}
+      </div>
+      <div className='flex gap-8'>
+        {categories.slice(4).map(c => (
+          <Row
+            key={c.id}
+            id={c.id}
+            name={c.name}
+            handleChange={handleChange}
+            selected={selectedCategory}
+          />
+        ))}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Filter
+export default Filter;

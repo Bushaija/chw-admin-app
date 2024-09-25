@@ -1,63 +1,50 @@
 "use client"
 import UserCard from "@/components/UserCard";
-import { useState, useEffect } from "react";
-import axiosInstance from "@/utils/axiosInstance";
-import axios from "axios";
+import { useContext, useState, useEffect } from "react";
+import { DashboardContext } from "@/contexts/DashboardProvider";
 
 const AdminPage = () => {
-    const [dashboardData, setDashboardData] = useState(null);
+    const { admin, advisors, stockLevels } = useContext(DashboardContext);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [sessionId, setSessionId] = useState(null)
-
-    const getDashboardData = async () => {
-        try {
-            const session_id = localStorage.getItem("session_id");
-            setSessionId(session_id)
-            const response = await axios.get("/api/dashboard", {
-                headers: {
-                    "X-Session-ID": session_id
-                }
-            });
-            console.log("Dashboard data:: ", response.data);
-            return response.data;
-        } catch(error) {
-            console.error("Error fetching dashboard data", error);
-            throw error;
-        }
-    }
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const data = await getDashboardData();
-                setDashboardData(data);
-                setLoading(false)
-            } catch(err) {
-                setError(err.message);
-                setLoading(false);
-            }
+        if (!admin || !advisors || !stockLevels) {
+            setLoading(true);
+            setError("Dashboard data is unavailable or not loaded yet.");
+        } else {
+            setLoading(false);
+            setError(null);
         }
-        fetchData();
-    }, []);
+    }, [admin, advisors, stockLevels]);
 
-    if(loading) return <div>Loadding...</div>;
-    if(error) return <div>Error: {error}<br/> {sessionId}</div>;
+    const uniqueStockItemCodes = new Set(stockLevels?.map(item => item.stock_item_code) || []);
+    const dispensedItems = stockLevels?.filter(item => item.status === "Dispensed") || [];
 
+    console.log("stockLevels-data:", stockLevels);
+
+    if (loading) return <div>Loading...</div>;
+
+    if (error) return <div>Error: {error}</div>;
 
     return (
         <section className="p-4 flex gap-4 flex-col md:flex-row">
-            {/* LEFT  */}
+            {/* LEFT */}
             <div className="w-full lg:w-2/3 flex flex-col gap-8">
                 {/* USER CARDS */}
                 <div className="flex gap-4 justify-between flex-wrap">
-                    <UserCard type="Total CHW" />
-                    <UserCard type="Commodities" />
-                    <UserCard type="Recent Orders" />
+                    {/* Display admin details if available */}
+                    <div>
+                        {/* {admin ? <div>{admin.first_name}</div> : <div>Admin data unavailable</div>} */}
+                    </div>
+                    {/* Display UserCards based on context data */}
+                    <UserCard type="Total CHW" count={advisors.length || 0} />
+                    <UserCard type="Commodities" count={uniqueStockItemCodes.size || 0} />
+                    <UserCard type="Recent Orders" count={dispensedItems.length || 0} />
                 </div>
             </div>
         </section>
-    )
+    );
 }
 
 export default AdminPage;

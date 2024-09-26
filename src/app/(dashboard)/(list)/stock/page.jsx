@@ -53,7 +53,7 @@ const StockPage = () => {
         const itemCategory = medicalItems.find(item => item.stock_item_code === stock.stock_item_code)?.item_category || "Unknown"
         return {
             id: stock.id,
-            name: advisor ? advisor.full_name : "Unknown CHW",
+            name: advisor ? advisor.first_name + " " + advisor.last_name : "Unknown CHW",
             commodityType: stock.stock_item_code,
             quantity: stock.stock_item_code.length,
             category: itemCategory,

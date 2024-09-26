@@ -1,16 +1,27 @@
-"use client";
+"use client"
 import { useContext, useState } from "react";
-import Table from "@/components/Table";
-import Filter from "@/components/Filter";
+import Table from "@/components/Table"
+import Filter from "@/components/Filter"
 import { DashboardContext } from "@/contexts/DashboardProvider";
-import medicalItems from "@/data/medical_items.json"; 
+import medicalItems from "@/data/medical_items.json";
+
 
 const columns = [
-    { header: "Name", accessor: "name" },
-    { header: "Commodity Type", accessor: "commodityType", className: "hidden md:table-cell" },
-    { header: "Request Quantity", accessor: "quantity", className: "hidden md:table-cell" },
-    { header: "Status", accessor: "status", className: "hidden md:table-cell" },
-];
+    {
+        header: "Name",
+        accessor: "name",
+    },
+    {
+        header: "Commodity Type",
+        accessor: "commodity",
+        className: "hidden md:table-cell",
+    },
+    {
+        header: "Forecasted Quantity",
+        accessor: "forecasted",
+        className: "hidden md:table-cell",
+    },
+]
 
 const categories = [
     "malaria",
@@ -23,7 +34,9 @@ const categories = [
     "equipments",
   ];
 
-const RequestPage = () => {
+
+const PredictionPage = () => {
+
     const { stockLevels, advisors } = useContext(DashboardContext);
     const [currentPage, setCurrentPage] = useState(1);
     const rowsPerPage = 5;
@@ -87,53 +100,51 @@ const RequestPage = () => {
             </td>
             <td className="hidden md:table-cell">{item.commodityType}</td>
             <td className="hidden md:table-cell text-center">{item.quantity}</td>
-            <td className="hidden md:table-cell capitalize">{item.status}</td>
         </tr>
-    );
-
-    return (
-        <section className="">
-            <h1 className="m-4 hidden md:block text-lg font-bold text-green-500">
-                Inventory Level
-            </h1>
-            <div className="bg-[#f6f5ec] p-4 rounded-md flex-1 m-4 mt-8 pb-[2rem] w-full">
-                {/* Pass selectedCategory and setSelectedCategory to Filter */}
-                <Filter 
-                    selectedCategory={selectedCategory} 
-                    setSelectedCategory={setSelectedCategory} 
+    )
+    
+  return (
+    <section className="">
+        <h1 className="m-4 hidden md:block text-lg font-bold text-green-500">
+            Stock Level Prediction
+        </h1>
+        <div className="bg-[#f6f5ec] p-4 rounded-md flex-1 m-4 mt-8 pb-[2rem] w-full">
+            <Filter 
+                selectedCategory={selectedCategory} 
+                setSelectedCategory={setSelectedCategory} 
+            />
+        </div>
+        <div className="bg-[#f6f5ec] p-4 rounded-md flex-1 m-4 mt-8 pb-[2rem] w-full">
+        
+            {/* list */}
+            <div className="flex justify-center items-center mt-12">
+                <Table 
+                    columns={columns}
+                    renderRow={renderRow}
+                    data={currentRows}
                 />
             </div>
-            <div className="bg-[#f6f5ec] p-4 rounded-md flex-1 m-4 mt-8 pb-[2rem] w-full">
-                {/* list */}
-                <div className="flex justify-center items-center mt-12">
-                    <Table 
-                        columns={columns}
-                        renderRow={renderRow}
-                        data={currentRows}
-                    />
-                </div>
-
-                {/* Pagination Controls */}
-                <div className="flex justify-between mt-4">
-                    <button 
-                        onClick={goToPreviousPage} 
-                        disabled={currentPage === 1}
-                        className="px-4 py-2 bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
-                    >
-                        Previous
-                    </button>
-                    <span>Page {currentPage} of {totalPages}</span>
-                    <button 
-                        onClick={goToNextPage} 
-                        disabled={currentPage === totalPages}
-                        className="px-4 py-2 bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
-                    >
-                        Next
-                    </button>
-                </div>
+            {/* Pagination Controls */}
+            <div className="flex justify-between mt-4">
+                <button 
+                    onClick={goToPreviousPage} 
+                    disabled={currentPage === 1}
+                    className="px-4 py-2 bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
+                >
+                    Previous
+                </button>
+                <span>Page {currentPage} of {totalPages}</span>
+                <button 
+                    onClick={goToNextPage} 
+                    disabled={currentPage === totalPages}
+                    className="px-4 py-2 bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
+                >
+                    Next
+                </button>
             </div>
-        </section>
-    );
-};
+        </div>
+    </section>
+  )
+}
 
-export default RequestPage;
+export default PredictionPage

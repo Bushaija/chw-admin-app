@@ -7,8 +7,6 @@ import { registerUser } from "@/lib/data"
 import axiosInstance from "../../../utils/axiosInstance"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import { handleLogin } from "../../../utils/axios";
-import axios from "axios"
 
 const SignIn = () => {
   const router = useRouter()

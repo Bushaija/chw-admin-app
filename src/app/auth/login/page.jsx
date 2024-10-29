@@ -38,17 +38,20 @@ const SignIn = () => {
       });
 
       if (response.data) {
-        // const session_id = response.data.session_id;
-        // localStorage.setItem("session_id", session_id);
         router.push("/admin");
       }
     } catch (error) {
-      setError(error)
+      if (error.response && error.response.status == 401) {
+        setError("Invalid email or password. Please try again.")
+        setTimeout(() => {
+          setError(null);
+        }, 5000);
+      }
       console.error("Invalid credentials. Please try again.");
     }
   };
 
-  if (error) return <div>Error: {error.message}</div>
+  // if (error) return <div className="flex justify-center items-center">Error: {error}</div>
 
   return (
       <section className="bg-[#E9EBED] h-[100vh] w-full  flex items-center justify-center">
@@ -78,6 +81,14 @@ const SignIn = () => {
 
                   </div>
               </div>
+              {
+                error &&
+                (
+                  <div className="mt-4 text-red-600 text-center">
+                    {error}
+                  </div>
+                )
+              }
               <div className="submit mt-8">
                 <div>
                   <button type="submit">

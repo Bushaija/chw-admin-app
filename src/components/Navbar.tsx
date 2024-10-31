@@ -6,9 +6,6 @@ import { DashboardContext } from "@/contexts/DashboardProvider";
 const Navbar = () => {
     const { admin } = useContext(DashboardContext);
 
-    // Log admin data for debugging
-    console.log("admin: ", admin);
-
     // Fallbacks in case admin data is unavailable
     const firstName = admin?.first_name || "Guest";
     const lastName = admin?.last_name || "User";

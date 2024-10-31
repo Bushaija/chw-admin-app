@@ -50,7 +50,7 @@ const InventoryPage = () => {
                 <div className="flex items-center gap-4 w-full">
                     {filteredMedicines.map((item) => (
                         <div key={item.id} className="w-full">
-                            <UserCard type={item.name} />
+                            <UserCard type={item.name} count={""}/>
                         </div>
                     ))}
                 </div>
